@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="AlchemyWorkshop/AlchemyWorkshop.vcxproj" />
+  <Project Path="AlchemyWorkshop/AlchemyWorkshop.vcxproj" Id="1f7800f5-5a2b-4e7a-851d-ec1fb829bc4e" />
 </Solution>

@@ -1,4 +1,4 @@
-// AlchemyWorkshop.cpp
+﻿// AlchemyWorkshop.cpp
 
 #include "AlchemyWorkshop.h"
 #include <iostream>
@@ -32,4 +32,34 @@ void AlchemyWorkshop::displayAllRecipes() const
         std::cout << std::endl;
     }
     std::cout << "---------------------------\n";
+}
+
+const PotionRecipe* AlchemyWorkshop::searchRecipeByName(const std::string& name) const
+{
+    for (const auto& recipe : recipes)
+    {
+        if (recipe.potionName == name)
+        {
+            return &recipe;
+        }
+    }
+
+    return nullptr;
+}
+
+std::vector<PotionRecipe> AlchemyWorkshop::searchRecipeByIngredient(std::string& ingredient)
+{
+    std::vector<PotionRecipe> searcRecipe;
+    for (const auto& recipe : recipes)
+    {
+        for (const auto& i : recipe.ingredients)
+        {
+            if (i == ingredient)
+            {
+                searcRecipe.push_back(recipe);
+            }
+        }
+    }
+
+    return searcRecipe;
 }
