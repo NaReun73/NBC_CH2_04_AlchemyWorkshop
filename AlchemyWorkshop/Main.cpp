@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "RecipeManager.h"
+#include "StockManager.h"
 
 int main() {
     AlchemyWorkshop myWorkshop;
@@ -11,9 +13,10 @@ int main() {
         std::cout << "******* 연금술 공방 관리 시스템 *******" << std::endl;
         std::cout << "1. 레시피 추가" << std::endl;
         std::cout << "2. 모든 레시피 출력" << std::endl;
-        std::cout << "3. 레시피 이름으로 검색" << std::endl;
+        std::cout << "3. 물약 찾기 및 지급" << std::endl;
         std::cout << "4. 특정 재료가 들어가는 모든 레시피 검색" << std::endl;
-        std::cout << "5. 종료" << std::endl;
+        std::cout << "5. 물약 반환" << std::endl;
+        std::cout << "6. 종료" << std::endl;
         std::cout << "선택: ";
 
         int choice;
@@ -64,41 +67,31 @@ int main() {
         }
         else if (choice == 3)
         {
-            std::cout << "레시피의 이름을 적어주세요." << std::endl;
+            std::cout << "지급할 물약의 이름을 적어주세요." << std::endl;
             std::string searchName;
-            std::cin.ignore(1000, '\n');
+            //std::cin.ignore(10000, '\n');
             std::getline(std::cin, searchName);
-            if (myWorkshop.searchRecipeByName(searchName) != nullptr)
-            {
-                std::cout << searchName << " 레시피를 찾았습니다!" << std::endl;
-            }
-            else
-            {
-                std::cout << searchName << " 레시피가 존재하지 않습니다." << std::endl;
-            }
+
+            myWorkshop.searchRecipeByName(searchName);
         }
         else if (choice == 4) {
             std::cout << "재료의 이름을 적어주세요." << std::endl;
             std::string searchIngredient;
-            std::cin.ignore(1000, '\n');
+            //std::cin.ignore(10000, '\n');
             std::getline(std::cin, searchIngredient);
 
-            std::vector<PotionRecipe> searchResults = myWorkshop.searchRecipeByIngredient(searchIngredient);
-
-            if (searchResults.empty())
-            {
-                std::cout << "해당 재료가 포함된 레시피가 없습니다." << std::endl;
-            }
-            else
-            {
-                std::cout << "- " << searchIngredient << "가 포함된 레시피" << std::endl;
-                for (const auto& recipe : searchResults)
-                {
-                    std::cout << " > " << recipe.potionName << std::endl;
-                }
-            }
+            myWorkshop.searchRecipeByIngredient(searchIngredient);
+            
         }
         else if (choice == 5) {
+            std::cout << "반환 받을 물약의 이름을 적어주세요." << std::endl;
+            std::string Name;
+            //std::cin.ignore(10000, '\n');
+            std::getline(std::cin, Name);
+
+            myWorkshop.returnPotionByName(Name);
+        }
+        else if (choice == 6) {
             std::cout << "공방 문을 닫습니다..." << std::endl;
             break;
 
